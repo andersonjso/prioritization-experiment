@@ -8,7 +8,15 @@ import org.jooby.Jooby;
 public class App extends Jooby {
 
   {
-    get("/", () -> "Hello World!");
+    assets("/", "index.html");
+    assets("/code", "codesnippets.html");
+
+    assets("/bower_components/**");
+    assets("/js/**");
+    assets("/css/**");
+    assets("/html/**");
+    assets("/resources/**");
+    assets("/data/**");
   }
 
   public static void main(final String[] args) {

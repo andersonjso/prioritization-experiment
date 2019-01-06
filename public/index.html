@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Design Problem Identification Experiment</title>
+</head>
+
+<body ng-app="myApp">
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="#!/">Opus</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#!/">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#!symptoms">Symptoms</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#!designproblems">Design Problems</a>
+                </li>
+            </ul>
+        </div>
+</nav>
+    </div>
+
+<!--<div class="container">-->
+    <!--<div class="row">-->
+        <!--<div class="large-12 columns">-->
+            <!--<h2>Identificação de Problemas de Design</h2>-->
+            <!--<hr/>-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <!--<div class="row" style="position:relative;">-->
+
+        <!--<aside class="large-2 small-2 columns panel years">-->
+            <!--<h5>Classes</h5>-->
+            <!--<ul class="side-nav">-->
+
+            <!--</ul>-->
+        <!--</aside>-->
+
+        <!--<div class="large-8 small-6 columns" role="content">-->
+            <!--<article>-->
+                <!--<h6 class="text-center">Sintomas no elemento<span><strong> <text id="labelElement"></text></strong></span></h6>-->
+                <!--<chord-diagram id="chordDiagramId"></chord-diagram>-->
+
+            <!--</article>-->
+        <!--</div>-->
+
+        <!--<aside class="large-3 small-4 columns asideSymptoms">-->
+            <!--<input type="button" id="buttonSelectSymptoms" class="button tiny right" value="Deselecionar todos" onclick="changeLabelButton(this);" />-->
+
+            <!--<div class="panel">-->
+                <!--<div>-->
+                    <!--<h5>Sintomas</h5>-->
+                <!--</div>-->
+                <!--<ul class="side-nav">-->
+                    <!--<li>-->
+                        <!--<div id="divSymptoms">-->
+
+                        <!--</div>-->
+
+                    <!--</li>-->
+                <!--</ul>-->
+            <!--</div>-->
+        <!--</aside>-->
+
+        <!--<fieldset id="tooltip" class="row secondary">-->
+            <!--<div class="large-12 small-12 columns">-->
+                <!--<h6><text id="tooltipLabel"></text></h6>-->
+            <!--</div>-->
+        <!--</fieldset>-->
+
+        <!--<aside>-->
+            <!--<div id="symptombox" class="columns panel">-->
+                <!--<div>Informações do Sintoma-->
+                    <!--<input type="button" id="hideSymptomBox" class="button tiny right" value="Esconder" onclick="hideSymptomBox(this);" />-->
+                <!--</div>-->
+                <!--<hr/>-->
+                <!--<div id="infoSymptomDiv">-->
+
+                <!--</div>-->
+            <!--</div>-->
+        <!--</aside>-->
+    <!--</div>-->
+<!--</div>-->
+
+
+
+
+<div ng-view></div>
+
+<!--<script src = "bower_components/jquery/dist/jquery.min.js"></script>-->
+
+<script src="bower_components/angular/angular.min.js"></script>
+
+<script src="bower_components/angular-route/angular-route.js"></script>
+
+<!--<script src = "bower_components/bootstrap/dist/js/bootstrap.min.js"></script>-->
+
+<script src = "bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js  "></script>
+
+<script src="js/main.js"></script>
+<script src="js/SourceCodeController.js"></script>
+<script src="js/DashboardController.js"></script>
+<script src="js/SymptomController.js"></script>
+<script src="js/DesignProblemController.js"></script>
+<script src="js/ClassDPController.js"></script>
+
+
+<!--<script src = "../bower_components/jquery/dist/jquery.js"></script>-->
+<!--<script src="../bower_components/angular/angular.js"></script>-->
+<script src="bower_components/d3/d3.js"></script>
+<script src="js/createChordDirective.js"></script>
+<script src="js/importData.js"></script>
+<script src="js/showSymptoms.js"></script>
+<script src="js/createChordMatrix.js"></script>
+<script src="js/prepareSymptoms.js"></script>
+
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+<!--<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?lang=java"></script>-->
+
+<!--<link href = "bower_components/bootstrap/dist/css/bootstrap.min.css" rel = "stylesheet">-->
+
+<link href = "css/prettify.css" rel = "stylesheet">
+<link href = "css/main.css" rel = "stylesheet">
+
+<link rel="stylesheet" href="css/app.css" />
+<!--<link rel="stylesheet" href="css/foundation.css" />-->
+<link rel="stylesheet" href="css/normalize.css" />
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script
+        src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<script>
+    $(function () {
+        $('[data-toggle="popover"]').popover()
+    })
+
+    $(function () {
+        $("[data-toggle='popover']").on('click', function(e) {
+            $('#greendiv').popover('toggle');
+        });
+    });
+
+    $(window).scroll(function(){
+        $("#div").stop().animate({"marginTop": ($(window).scrollTop()) + "px", "marginLeft":($(window).scrollLeft()) + "px"}, "slow" );
+    });
+    var totaltext = "";
+    for (var i = 0; i < 100; i++) {
+        totaltext += "scroll!<br />";
+    }
+    $("#div2").html(totaltext);
+</script>
+
+<script>
+    importData();
+
+</script>
+</body>
+</html>

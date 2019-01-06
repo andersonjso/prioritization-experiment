@@ -1,0 +1,22 @@
+{
+  "name": "experiment-dp",
+  "description": "",
+  "version": "0.0.1",
+  "homepage": "",
+  "license": "",
+  "private": true,
+  "dependencies": {
+    "angular": "1.6.x",
+    "jquery": "~2.1.1",
+    "bootstrap": "4.0",
+    "angular-resource": "1.4.x",
+    "angular-bootstrap": "*",
+    "d3": "3.5.17",
+    "modernizr": "3.5.0"
+  }
+}
+
+
+
+
+

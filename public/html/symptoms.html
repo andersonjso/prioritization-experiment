@@ -1,0 +1,139 @@
+
+<br>
+<div class="container" >
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        Suggest Example of Symptom
+    </button>
+    <hr>
+    <div class="row">
+        <div class="col-sm-12">
+            <div id="accordion">
+                <div ng-repeat="symptomType in symptoms">
+                    <div class="card">
+                        <h5 class="card-header">{{symptomType.typeSymptom}}</h5>
+                        <div ng-repeat="symptom in symptomType.symptoms">
+                        <div class="card-body">
+                            <h5 class="card-title">{{symptom.value}}</h5>
+                            <div class="row">
+                            <div class="col-10">
+                                <p class="card-text">{{symptom.description}}</p>
+                            </div>
+                            <div class="col-2">
+                                <button type="button" ng-click='showExamples(symptom)' class="btn btn-primary" data-toggle="modal" data-target="#examplesByTypeModal">
+                                    Examples
+                                </button>
+                            </div>
+                            </div>
+                        </div>
+                            <hr>
+
+                            <!--Modal-->
+                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Suggest Example</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <label for="userName">User Name</label>
+                                                <input type="text" class="form-control" id="userName" ng-model="metadata.userName" placeholder="Please enter your name">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="fileName">Element</label>
+                                                <input type="text" class="form-control" id="fileName" ng-model="metadata.fileName" placeholder="Please enter the name of your file">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="description">Why this can be considered a symptom?</label>
+                                                <textarea class="form-control" id="description" ng-model="metadata.description" rows="3"></textarea>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Select the Symptom</label>
+                                                <select ng-model="metadata.chosenSymptom">
+                                                    <option ng-repeat="symptom in allSymptoms">{{symptom.value}}</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="inputFile">Select the source code example</label>
+                                                <input type="file" class="form-control-file" name="inputFile" id="inputFile" aria-describedby="fileHelp">
+                                                <small id="fileHelp" class="form-text text-muted">Please select a file that contains the symptom.</small>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="button" ng-click='sendExample(symptom, metadata)' class="btn btn-primary">Send Example</button>
+                                        </div>
+
+                                        <div ng-if="saved"> <span class="badge badge-success">Saved</span></div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="modal fade" data-target=".bd-example-modal-lg" id="examplesByTypeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Examples</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div ng-if="examples.length > 0">
+                                            <div class="modal-body">
+                                                <div class="row">
+                                                    <div class="col-3">
+                                                        <ul class="list-group">
+                                                            <li ng-repeat="example in examples" class="list-group-item">
+                                                                <a ng-click='updateCurrentExample(example)'>{{example.fileName}}</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="col-9">
+                                                        <div ng-if="exampleSelected">
+                                                            <h5><strong>Sent by {{currentExample.userName}}</strong></h5>
+                                                            <h5><strong>Reason:</strong> {{currentExample.description}}</h5>
+                                                            <font size="2"><pre class="prettyprint lang-java"><code>{{sourceCode}}</code></pre></font>
+                                                        </div>
+                                                        <div ng-if="!exampleSelected">
+                                                            <h3>Please Select an example!</h3>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div ng-if="examples.length == 0">
+                                            <br>
+                                            <center><h3>There is no examples yet!</h3></center>
+                                            <br>
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <!--<button type="button" ng-click='sendExample(symptom, metadata)' class="btn btn-primary">Send Example</button>-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+
+
+                    </div>
+
+                    <hr>
+                </div>
+                </div>
+        </div>
+    </div>
+</div>
+

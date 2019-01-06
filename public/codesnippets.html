@@ -1,0 +1,134 @@
+<html>
+<head>
+    <link rel="stylesheet"
+          href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	<script type="text/javascript" src="../modules/jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript" src="../modules/jquery.fileTree-1.01/jqueryFileTree.js"></script>
+	<script type="text/javascript" src="../modules/jquery.fileTree-1.01/jquery.easing.js"></script>
+	<!--<script type="text/javascript" src="../js/r.js"></script>-->
+	<script type="text/javascript" src="../js/jstree.js"></script>
+	<script type="text/javascript" src="../js/codesnippets.js"></script>
+	<script src="../js/app.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
+
+
+
+	<link rel="stylesheet" type="text/css" href="../modules/jquery.fileTree-1.01/jqueryFileTree.css">
+    <script>hljs.initHighlightingOnLoad();</script>
+	<script>
+//        $(document).ready( function() {
+//            $('#myTree').fileTree({
+//				root: '../modules/',
+//				script: '../modules/jquery.fileTree-1.01/connectors/jqueryFileTree.jsp'
+//			}, function(file) {
+//                alert(file);
+//            });
+//        });
+	</script>
+
+
+</head>
+<body>
+<div class="container">
+	<div class="row">
+		<div class="col-sm-2">
+			<p id="demo"></p>
+
+			<div ng-app="myApp" ng-controller="myCtrl">
+				{{ firstName + " " +  }}
+			</div>
+		</div>
+		<div class="col-sm-10">
+			<pre><code class="java">package br.les.opus.dengue.sdk.endpoints;
+
+import java.io.IOException;
+import java.net.URISyntaxException;
+
+import br.les.opus.dengue.sdk.api.SdkDengueException;
+import br.les.opus.dengue.sdk.domain.InstagramEnvelope;
+import br.les.opus.dengue.sdk.domain.PoiEnvelope;
+import br.les.opus.dengue.sdk.domain.PointOfInterest;
+import br.les.opus.dengue.sdk.domain.TweetEnvelope;
+import br.les.opus.dengue.sdk.util.GsonDengueBuilder;
+import br.les.opus.dengue.sdk.util.SdkURIBuilder;
+
+public class PoiConsumer extends EndpointConsumer{
+	private String language;
+
+	public PoiConsumer(){
+		super();
+		language = "pt";
+	}
+
+	public PoiConsumer(String language) {
+		super();
+		this.language = language;
+	}
+
+
+	/*
+	 * Get all point of interest
+	 */
+	public PoiEnvelope getAllPointsOfInterest(){
+		String json ="";
+
+		SdkURIBuilder uriBuilder = getURIBuilder();
+		uriBuilder.setPathPoi(SdkURIBuilder.POI);
+		uriBuilder.setPathPoi(SdkURIBuilder.ORDERBYDATA);
+
+		try {
+			json = executeGetRequest(uriBuilder.build(), language);
+		} catch (IOException e) {
+			throw new SdkDengueException("An exception was thrown during"
+					+ " request", e);
+		} catch (URISyntaxException e) {
+			throw new SdkDengueException("An exception was thrown during"
+					+ " uri creation", e);
+		}
+
+		return new GsonDengueBuilder().build().fromJson(json,PoiEnvelope.class);
+	}
+
+	/*
+	 * Get an specific poi
+	 */
+	public PointOfInterest getPointofInterest(long id){
+		String json = "";
+
+		SdkURIBuilder uriBuilder = getURIBuilder();
+		uriBuilder.setPathPoi(SdkURIBuilder.POI);
+
+		uriBuilder.setPathPoi(Long.toString(id));
+
+		try {
+			json = executeGetRequest(uriBuilder.build(), language);
+		} catch (IOException e) {
+			throw new SdkDengueException("An exception was thrown during"
+					+ " request", e);
+		} catch (URISyntaxException e) {
+			throw new SdkDengueException("An exception was thrown during"
+					+ " uri creation", e);
+		}
+
+		return new GsonDengueBuilder().build().fromJson(json, PointOfInterest.class);
+	}
+}
+</code></pre>
+		</div>
+
+	</div>
+</div>
+
+</body>
+</html>

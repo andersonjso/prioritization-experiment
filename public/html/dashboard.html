@@ -1,0 +1,30 @@
+
+<!--<button id="popoverinfo" type="button" class="btn btn-sm btn-danger"  data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?">Click to toggle popover</button>-->
+<div class="container" >
+    <div class="row">
+        <div class="col-sm-12">
+            <br>
+
+            <h5>Classes:</h5>
+
+            <!--<button type="button" id="smellButton" ng-click="filterSymptom('smell')" class="btn btn-primary btn-sm" ng-class="{'btn-light': !isActivesmell}" ><span class="badge">Code Smells</span></button>-->
+            <!--<button type="button" ng-click="filterSymptom('object')"class="btn btn-primary btn-sm" ng-class="{'btn-light': !isActiveobject}"><span class="badge">Object-Oriented Principles Violations</span></button>-->
+            <!--<button type="button" ng-click="filterSymptom('architectural')"class="btn btn-primary btn-sm" ng-class="{'btn-light': !isActivearchitectural}"><span class="badge">Architectural and Design Patterns Violations</span></button>-->
+            <!--<button type="button" ng-click="filterSymptom('nonfunctional')"class="btn btn-primary btn-sm" ng-class="{'btn-light': !isActivenonfunctional}"><span class="badge">Non-functional Requirements Violation</span></button>-->
+            <!--<button type="button" ng-click="filterSymptom('structural')"class="btn btn-primary btn-sm" ng-class="{'btn-light': !isActivestructural}"><span class="badge">Poor Structural Quality Attributes</span></button>-->
+
+            <!--<hr>-->
+
+            <ul class="list-group">
+                <div ng-repeat="classSC in classes">
+                    <li class="list-group-item"><button class="btn btn-outline-primary" ng-click='go(classSC)'><strong>{{classSC.class.sourceFile.name}}</strong></button>
+                        <button type="button" class="btn btn-outline-danger">
+                            <span class="badge pull-left">{{classSC.class.syndrome.length}} Sintomas</span>
+                        </button>
+                    </li>
+                </div>
+            </ul>
+
+        </div>
+    </div>
+</div>

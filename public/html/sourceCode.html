@@ -1,0 +1,116 @@
+
+<!--<button id="popoverinfo" type="button" class="btn btn-sm btn-danger"  data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?">Click to toggle popover</button>-->
+<div class="container-fluid ng-cloak" >
+    <div class="row">
+        <div class="col-sm-12">
+            <h2>{{dataResponse.class.sourceFile.name}}</h2>
+            <h5>{{dataResponse.class.sourceFile.fullyQualifiedName}}</h5>
+        </div>
+
+        <br/>
+
+        <hr/>
+        <div class="col-sm-3">
+            <!--<div id="accordion" class="sticky-top">-->
+
+            <div class="card">
+                <div class = card-header>
+                    <h4>Sintomas da Classe</h4>
+                </div>
+
+                <ul ng-repeat="symptom in dataResponse.class.syndrome" class="list-group list-group-flush">
+                    <div ng-if="symptom.type == 'class_smell'">
+                        <li class="list-group-item">
+                            <h5>{{symptom.value}}</h5>
+                    </li>
+                    </div>
+                </ul>
+            </div>
+
+
+
+            <hr/>
+
+            <div ng-show="currentMethod" class="card">
+                <div class="card-header">
+                    <strong><h5>{{currentMethod}}</h5></strong>
+                </div>
+                <ul ng-repeat="symptomMethod in symptomsMethod" class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <p><strong>Sintoma:</strong> {{symptomMethod.symptomName}}</p>
+                        <p><strong>Razão:</strong> {{symptomMethod.reason}}</p>
+                    </li>
+                </ul>
+            </div>
+
+
+                <!--<div class="card bg-light">-->
+                    <!--<div class="card-header" id="heading{{symptom.id}}" >-->
+                        <!--<button class="btn btn-link collapsed text-left" data-toggle="collapse" data-target="#collapse{{symptom.id}}" aria-expanded="true" aria-controls="collapse{{symptom.id}}">-->
+                            <!--<p>{{symptom.element.name}}</p>-->
+                        <!--</button>-->
+                        <!--<h6 class="card-subtitle mb-2 text-muted">Afetado por {{symptom.value}}-->
+                            <!--<br/><span data-toggle="popover"  title="Popover title"  data-content="And here's some amazing content. It's very engaging. Right?">({{symptom.type}}) </span></h6>-->
+
+                    <!--</div>-->
+
+
+                    <!--<div id="collapse{{symptom.id}}" class="collapse" aria-labelledby="heading{{symptom.id}}" data-parent="#accordion">-->
+
+                        <!--<div class="card-body">-->
+
+                            <!--<p class="card-text"><b>{{symptom.value}}:</b> {{symptom.description}}</p>-->
+                            <!--<button ng-if="symptom.element.type=='method'" type="button" class="btn btn-primary"-->
+                                    <!--ng-click=highlightCode(symptom.element)>Ir ao Método</button>-->
+
+                        <!--</div>-->
+
+                        <!--<div class="card-footer">-->
+                            <!--<h6>Sintomas Relacionados</h6>-->
+                            <!--<div class="row">-->
+                            <!--<div ng-repeat="relation in symptom.relation" class="col-sm-{{12/symptom.relation.length}}">-->
+                                <!--{{relation.type}}-->
+                                <!--<div ng-repeat="related in relation.relatedSymptoms">-->
+                                    <!--<button class="btn btn-link" text-muted data-toggle="collapse" data-target="#collapse{{related}}">-->
+                                        <!--{{(dataResponse.syndrome | filter : {id: related})[0].element.name}}: {{(dataResponse.syndrome | filter : {id: related})[0].value}}-->
+                                    <!--</button>-->
+                                    <!--&lt;!&ndash;{{$filter('filter')(dataResponse.syndrome, {id: 15 })[0]}}&ndash;&gt;-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+        <div id="codeContainer" class="col-sm-7" >
+            <!--<h3>Popover Example</h3>-->
+            <!--<button type="button" class="btn" data-toggle="popover" title="Popover Header" data-trigger="focus" data-content="Some content inside the popover">Toggle popover</button>-->
+            <pre class="prettyprint linenums"><code>{{sourceCode}}</code></pre>
+        </div>
+
+        <div class="col-sm-2" >
+            <h4>Sintomas dos Métodos</h4>
+            <p>(Clique para ver os métodos)</p>
+            <div ng-repeat="symptom in dataResponse.class.syndrome">
+                <div ng-if="symptom.type == 'method_smell'">
+                    <div class="card bg-light">
+                        <button class="btn btn-link collapsed text-left" data-toggle="collapse" data-target="#collapse{{symptom.id}}" aria-expanded="true" aria-controls="collapse{{symptom.id}}">
+                            <strong>{{symptom.value}}</strong>
+                        </button>
+
+                        <div id="collapse{{symptom.id}}" class="collapse" aria-labelledby="heading{{symptom.id}}" data-parent="#accordion">
+                            <div class="card-body">
+                                <div ng-repeat="element in symptom.elements">
+                                    <strong><a id="elementName" ng-click="highlightCode(element); getSymptomsFromMethod(element, dataResponse.class.syndrome);">{{element.name.substring(element.name.lastIndexOf('.')+1)}}()</a></strong>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,62 @@
+<div class="container">
+    <div class="row">
+        <div class="large-12 columns">
+            <h2>Identificação de Problemas de Design</h2>
+            <hr/>
+        </div>
+    </div>
+
+    <div class="row" style="position:relative;">
+
+        <aside class="large-2 small-2 columns panel years">
+            <h5>Classes</h5>
+            <ul class="side-nav">
+
+            </ul>
+        </aside>
+
+        <div class="large-8 small-6 columns" role="content">
+            <article>
+                <h6 class="text-center">Sintomas no elemento<span><strong> <text id="labelElement"></text></strong></span></h6>
+                <chord-diagram id="chordDiagramId"></chord-diagram>
+
+            </article>
+        </div>
+
+        <aside class="large-3 small-4 columns asideSymptoms">
+            <input type="button" id="buttonSelectSymptoms" class="button tiny right" value="Deselecionar todos" onclick="changeLabelButton(this);" />
+
+            <div class="panel">
+                <div>
+                    <h5>Sintomas</h5>
+                </div>
+                <ul class="side-nav">
+                    <li>
+                        <div id="divSymptoms">
+
+                        </div>
+
+                    </li>
+                </ul>
+            </div>
+        </aside>
+
+        <fieldset id="tooltip" class="row secondary">
+            <div class="large-12 small-12 columns">
+                <h6><text id="tooltipLabel"></text></h6>
+            </div>
+        </fieldset>
+
+        <aside>
+            <div id="symptombox" class="columns panel">
+                <div>Informações do Sintoma
+                    <input type="button" id="hideSymptomBox" class="button tiny right" value="Esconder" onclick="hideSymptomBox(this);" />
+                </div>
+                <hr/>
+                <div id="infoSymptomDiv">
+
+                </div>
+            </div>
+        </aside>
+    </div>
+</div>

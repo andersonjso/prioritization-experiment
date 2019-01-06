@@ -1,0 +1,14 @@
+#codeContainer{
+    height: 800px;
+    overflow: scroll;
+}
+
+button[ng-click]{
+    cursor: pointer;
+}
+
+#elementName{
+    color: #1165ff;
+    text-decoration: underline;
+    cursor:pointer;
+}

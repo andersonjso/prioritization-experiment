@@ -1,0 +1,104 @@
+<div class="container">
+<br>
+<h2><strong>{{currentClass.sourceFile.name}}</strong></h2>
+<h3>{{currentClass.sourceFile.fullyQualifiedName}}</h3>
+
+<p>
+    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+        Choose Symptoms to Filter
+    </button>
+</p>
+<div class="collapse" id="collapseExample">
+    <div class="card card-body">
+        <label>Select the set of Symptoms</label>
+        <div class="row">
+            <div ng-repeat="symptomType in symptomsToFilter">
+                <div class="col-12">
+                    <h5>{{symptomType.typeSymptom}}</h5>
+
+                    <div ng-repeat="symptom in symptomType.symptoms">
+                        <font size="2">
+                            <label class="checkbox-inline">
+                                <input type="checkbox"  ng-checked="{{symptom.value}}Checked" ng-model="symptom.selected" value={{symptom.value}}> {{symptom.value}}
+                            </label>
+                        </font>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-footer">
+        <button ng-click="filter()" class="btn btn-primary" type="button">
+            Filter
+        </button>
+    </div>
+
+    <div class="card-footer">
+        <button ng-click="chooseSuggestions()" class="btn btn-primary" type="button">
+            Get Suggestion
+        </button>
+    </div>
+
+
+</div>
+    <br>
+
+<div class="container-fluid">
+    <div class="row">
+        <!--ng-if="symptom.value == 'Legibilidade'"-->
+
+    <div ng-repeat="symptom in currentClass.syndrome"ng-if="!listSymptoms.includes(symptom.value)">
+            <div class="col-12">
+            <div id="{{symptom.value}}Card" class="card">
+                <div class="card-header" >
+                    <h5>{{symptom.type}} : {{symptom.value}}</h5>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title"><strong>Element</strong></h5>
+                    <p>{{symptom.element.name}} ({{symptom.element.type}})</p>
+                    <hr>
+                    <p class="card-text">
+
+                    <h5><strong>Reason</strong></h5>
+                         <p>{{symptom.reason}}</p>
+
+                    <hr>
+                    <h5><strong>Related Symptoms</strong></h5>
+
+
+                    <div class="row">
+                        <div ng-repeat="relation in symptom.relation" class="col-sm-{{12/symptom.relation.length}}">
+                            <h6>{{relation.type}}</h6>
+                            <div ng-repeat="related in relation.relatedSymptoms">
+                                <!--<button class="btn btn-link" text-muted data-toggle="collapse" data-target="#collapse{{related}}">-->
+                    {{(currentClass.syndrome | filter : {id: related})[0].element.name}}: {{(currentClass.syndrome | filter : {id: related})[0].value}}
+                                <!--</button>-->
+                                <!--{{$filter('filter')(dataResponse.syndrome, {id: 15 })[0]}}-->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--<hr>-->
+                    <!--<label>Gravity:</label>-->
+                    <!--<form>-->
+                        <!--<label class="radio-inline">-->
+                            <!--<input type="radio" name="optradio"> Low-->
+                        <!--</label>-->
+                        <!--<label class="radio-inline">-->
+                            <!--<input type="radio" name="optradio"> Medium-->
+                        <!--</label>-->
+                        <!--<label class="radio-inline">-->
+                            <!--<input type="radio" name="optradio"> High-->
+                        <!--</label>-->
+                    <!--</form>-->
+                </div>
+            </div>
+
+        </div>
+        <br>
+    </div>
+
+    </div>
+</div>
+</div>
