@@ -12,11 +12,7 @@
     "angular-resource": "1.4.x",
     "angular-bootstrap": "*",
     "d3": "3.5.17",
-    "modernizr": "3.5.0"
+    "modernizr": "3.5.0",
+    "angular-route": "^1.7.5"
   }
 }
-
-
-
-
-
