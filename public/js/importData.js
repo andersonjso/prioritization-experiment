@@ -2,7 +2,7 @@
  * Since we are using the class qualified name as a key, thus we expect that the system won't have
  * two classes with the same qualified name
  */
-function importData(){
+function importData2(){
     var selectedClass = {       // STORE THE SELECTED CLASS IN THE CLASS PANEL [CLASS, FULLQUALIFIEDNAME]
         name: "",
         fullyQualifiedName: "",

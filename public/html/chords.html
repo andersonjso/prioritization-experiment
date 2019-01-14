@@ -2,6 +2,7 @@
     <div class="row">
         <div class="large-12 columns">
             <h2>Identificação de Problemas de Design</h2>
+            {{selectedClass}}
             <hr/>
         </div>
     </div>
@@ -13,6 +14,7 @@
             <ul class="side-nav">
 
             </ul>
+            <input type="button" class="btn-info" value="Ir para código da classe" ng-click="redirect();" />
         </aside>
 
         <div class="large-8 small-6 columns" role="content">
@@ -39,6 +41,9 @@
                     </li>
                 </ul>
             </div>
+
+
+
         </aside>
 
         <fieldset id="tooltip" class="row secondary">

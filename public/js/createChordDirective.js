@@ -1,5 +1,5 @@
 //function createChordDirective (csv, el, symptoms, relations, scope, selectedClass, data) {
-function createChordDirective (scope, data, selectedClass) {
+function createChordDirective2 (scope, data, selectedClass) {
   var el = $("#chordDiagramId");  //REFERENCE FOR THE CHORD DIAGRAM IN THE HTML PAGE
 
   var csv = [];               //  STORE THE DATA TO CREATE THE CHORD
@@ -146,7 +146,6 @@ function createChordDirective (scope, data, selectedClass) {
           var info = matrix.read(d);    //info now has the symptom id (gid) and the symptom name (gname)
 
           if ((info.sdata.data).length > 0){
-            console.log("foi")
               return colors(info.sdata.data[0].type);
           }
 
@@ -352,10 +351,11 @@ function createChordDirective (scope, data, selectedClass) {
 
   //FUNCTION TO LOAD AND SHOW THE CLASSES IN THE RIGHT PANEL
   function showClassesPanel(){
-    
+
+    //add click function
     var canvas = d3.select('.side-nav').append("form")
         .attr("width", 150)
-        .attr("height", 100);
+        .attr("height", 100).attr("ng-controller", "dashboardCtr");
 
     canvas.selectAll("label")
         .data(data)
@@ -367,6 +367,8 @@ function createChordDirective (scope, data, selectedClass) {
             name: "classes",
             class: "classElements",
             id: function(d){
+              console.log(d.class);
+
               classes.push(d.class.sourceFile.name);
               return d.class.sourceFile.name;
             },
@@ -375,6 +377,11 @@ function createChordDirective (scope, data, selectedClass) {
               return d.class.sourceFile.fullyQualifiedName;
             }
         })
+        .attr("ng-model", "classesForm")
+        .attr({"ng-value": function(d){
+          return d.class.sourceFile.name;
+        }})
+        .attr("ng-click", "eae()")
         .property("checked", function (d, i) {
             $("#labelElement").html(selectedClass.name);
             return i === j;
@@ -385,11 +392,10 @@ function createChordDirective (scope, data, selectedClass) {
 
         // function that hadles the click event on the input
         function inputClickEvent(d) {
-          
+
           selectedClass.name = d.class.sourceFile.name;
           selectedClass.fullyQualifiedName = d.class.sourceFile.fullyQualifiedName;
-          
-          
+
           $("#labelElement").html(selectedClass.name);
           showSymptoms(d);            //UPDATE THE LIST OF SYMPTOMS IN THE RIGHT PANEL
 
@@ -402,14 +408,14 @@ function createChordDirective (scope, data, selectedClass) {
             idInput = classes[i];
 
             var html = "<text id='" + idInput +"'> " + idInput + "</text>";
-            
+
             $(html).insertAfter("#" + idInput).on("click", function (d) {
               $("#"+ d.currentTarget.id).trigger("click");
             });
         }
 
         showSymptoms(scope[selectedClass.fullyQualifiedName]);
-        
+
   }
 
 
@@ -417,7 +423,6 @@ function createChordDirective (scope, data, selectedClass) {
     updateCSVSymptoms(data);
     
     var container = $("#divSymptoms");
-    console.log(data);
     container.empty();
 
     d3.select("#divSymptoms").selectAll("input")
@@ -508,14 +513,12 @@ function createChordDirective (scope, data, selectedClass) {
   }
 
   function resize() {
-    console.log(el);
-    console.log(el.parent()[0]);
-    var width = 750;
+      var width = el.parent()[0].clientWidth;
 
-    svg.attr({
-      width: width,
-      height: width / (size[0] / size[1])
-    });
+      svg.attr({
+          width: width,
+          height: width / (size[0] / size[1])
+      });
   }
 
 

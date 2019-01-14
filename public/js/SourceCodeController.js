@@ -1,7 +1,10 @@
-angular.module("myApp").controller('sourceCodeCtr', ['$scope','$http', '$location', '$anchorScroll', function($scope,$http, $location, $anchorScroll) {
+angular.module("myApp").controller('sourceCodeCtr', ['$scope','$http', '$routeParams', '$location', '$anchorScroll', function($scope,$http, $routeParams, $location, $anchorScroll) {
 
     $scope.currentMethod = null;
     $scope.firstPage = false;
+    var className = $routeParams.name;
+
+    alert(className);
 
     $http.get('/convert')
         .then(function (response) {

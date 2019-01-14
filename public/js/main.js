@@ -10,7 +10,7 @@ app.config(function($routeProvider){
             templateUrl : "html/chords.html",
             controller: "dashboardCtr",
         })
-        .when("/sc", {
+        .when("/sc/:name", {
             templateUrl: "html/sourceCode.html",
             controller: "sourceCodeCtr",
         })

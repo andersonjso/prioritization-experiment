@@ -1,4 +1,4 @@
-function createChordMatrix() {
+function createChordMatrix2() {
 
   var chordMatrix = function () {
     
